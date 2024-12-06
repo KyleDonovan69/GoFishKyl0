@@ -38,14 +38,21 @@ def reset_state():
 def home():
     return render_template("menu.html")
 
+@app.route("/quit")
+def quit_game():
+    session.clear()
+
+    flash("You have successfully quit the game. Goodbye!")
+    session.pop('_flashes', None)
+    return redirect(url_for("register"))
+
 
 @app.route("/startgame")
 def start():
-    reset_state()  # Reset the game state
+    reset_state()
     player_pairs = len(session.get("player_pairs", []))
     computer_pairs = len(session.get("computer_pairs", []))
 
-    # Pass pair counts to the template
     card_images = [card.lower().replace(" ", "_") + ".png" for card in session["player"]]
     return render_template(
         "startgame.html",
@@ -81,32 +88,27 @@ def process_card_selection(value):
     found_it = False
     card_to_transfer = None
 
-    # Check if the computer has a card matching the requested value
     for n, card in enumerate(session["computer"]):
-        if card.startswith(value):  # Match card by its value
+        if card.startswith(value):
             found_it = True
-            card_to_transfer = session["computer"].pop(n)  # Remove card from computer
+            card_to_transfer = session["computer"].pop(n)
             break
 
     if found_it:
-        # Computer gives the card to the player
         flash(f"The computer gave you the {card_to_transfer}.")
         session["player"].append(card_to_transfer)
     else:
-        # Go Fish logic
         flash("Go Fish!")
-        if session["deck"]:  # Check if the deck has cards left
+        if session["deck"]:
             new_card = session["deck"].pop()
             session["player"].append(new_card)
             flash(f"You drew a {new_card}.")
         else:
             flash("The deck is empty! No more cards to draw.")
 
-    # Identify and remove pairs from the player's hand
     session["player"], pairs = cards.identify_remove_pairs(session["player"])
     session["player_pairs"].extend(pairs)
 
-    # Check if the game is over
     if check_game_over():
         return redirect(url_for("game_over"))
 
@@ -150,7 +152,6 @@ def process_the_picked_card(value):
 def respond_to_computer(response, value):
     """Handle the player's response to the computer's card request."""
     if response == "yes":
-        # Check if the player has the card
         card_given = None
         for n, card in enumerate(session["player"]):
             if card.startswith(value):

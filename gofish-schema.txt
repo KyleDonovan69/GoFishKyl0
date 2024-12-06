@@ -1,38 +1,37 @@
--- Create Database
-CREATE DATABASE GoFishDB
-    CHARACTER SET utf8mb4
-    COLLATE utf8mb4_general_ci;
+--Create the database
+CREATE DATABASE GoFishDB;
 
+--Use the new database
 USE GoFishDB;
 
--- Players Table
+--Create the Players table
 CREATE TABLE Players (
-    player_id INT AUTO_INCREMENT PRIMARY KEY,
-    handle VARCHAR(50) NOT NULL UNIQUE,
-    registration_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-    games_played INT DEFAULT 0,
-    games_won INT DEFAULT 0
-) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL
+);
 
--- Games Table
+--Create the Games table
 CREATE TABLE Games (
     game_id INT AUTO_INCREMENT PRIMARY KEY,
     game_date DATETIME DEFAULT CURRENT_TIMESTAMP,
-    winner_id INT NULL,
     player_score INT NOT NULL,
     computer_score INT NOT NULL,
-    FOREIGN KEY (winner_id) REFERENCES Players(player_id) ON DELETE SET NULL
-) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+    winner_id INT NULL,
+    FOREIGN KEY (winner_id) REFERENCES Players(id) ON DELETE SET NULL
+);
 
--- Leaderboard View
-CREATE OR REPLACE VIEW Leaderboard AS
+--Create the Leaderboard view
+CREATE VIEW Leaderboard AS
 SELECT 
-    p.handle AS player_handle,
+    p.username AS player_name,
     COUNT(g.game_id) AS games_played,
-    SUM(g.player_score) AS total_score,
-    SUM(CASE WHEN g.winner_id = p.player_id THEN 1 ELSE 0 END) AS games_won
-FROM Players p
-LEFT JOIN Games g ON p.player_id = g.winner_id
-GROUP BY p.player_id
-ORDER BY total_score DESC, games_won DESC
-LIMIT 10;
+    SUM(CASE WHEN g.winner_id = p.id THEN 1 ELSE 0 END) AS games_won,
+    COALESCE(SUM(g.player_score), 0) AS total_score
+FROM 
+    Players p
+LEFT JOIN 
+    Games g ON p.id = g.winner_id
+GROUP BY 
+    p.id
+ORDER BY 
+    total_score DESC, games_won DESC;

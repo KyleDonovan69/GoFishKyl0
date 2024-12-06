@@ -32,9 +32,11 @@
             {% endfor %}
         </div>
 
-        <div id="scoreboard" class="scoreboard" hx-get="/update_pairs" hx-trigger="load every 2s" hx-swap="outerHTML">
-            <p>Player's Pairs: <span id="player-pairs">{{ player_pairs }}</span></p>
-            <p>Computer's Pairs: <span id="computer-pairs">{{ computer_pairs }}</span></p>
+        <div id="scoreboard-container">
+            <div id="scoreboard" class="scoreboard" hx-get="/update_pairs" hx-trigger="load every 2s" hx-swap="outerHTML">
+                <p>Player's Pairs: <span id="player-pairs">{{ player_pairs }}</span></p>
+                <p>Computer's Pairs: <span id="computer-pairs">{{ computer_pairs }}</span></p>
+            </div>
         </div>
     </div>
 </div>

@@ -1,0 +1,1 @@
+My scoring works this way: It takes the winners pairs and multiplies the amount by 10, giving the end score.
