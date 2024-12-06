@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block the_body %}
+<div class="center-container">
+    <h1>Welcome to Go Fish!</h1>
+    <h2>Enter your username to log in or create an account:</h2>
+    <form method="POST" action="{{ url_for('register') }}">
+        <input type="text" name="username" placeholder="Enter your username" required>
+        <button type="submit" class="menu-button">Submit</button>
+    </form>
+    <p>Want to see the top players?</p>
+    <a href="{{ url_for('leaderboard') }}" class="menu-button secondary-button">View Leaderboard</a>
+</div>
+{% endblock %}

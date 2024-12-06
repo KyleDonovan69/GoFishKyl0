@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block the_body %}
+<h1>Welcome to Go Fish!</h1>
+<p>Would you like to start a new game or quit?</p>
+
+<div class="menu-options">
+    <a href="/startgame" class="menu-button">Start Game</a>
+    <a href="/quit" class="menu-button">Quit</a>
+</div>
+{% endblock %}

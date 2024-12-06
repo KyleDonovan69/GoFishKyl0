@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block the_body %}
+<div id="game-area">
+    <div class="card-table">
+        <h2>The computer has {{ n_computer }} cards</h2>
+        <div class="computer-cards">
+            {% for _ in range(n_computer) %}
+            <img src="/static/cards/back.png" alt="Computer Card Back">
+            {% endfor %}
+        </div>
+        <div class="messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }} fade show" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+        <h2>Your Cards</h2>
+        <div class="player-cards">
+            {% for card in cards %}
+            <button hx-get="/select/{{ card.split('_')[0] }}"
+                    hx-trigger="click"
+                    hx-target="#game-area"
+                    hx-swap="outerHTML">
+                <img src="/static/cards/{{ card }}" alt="{{ card }}">
+            </button>
+            {% endfor %}
+        </div>
+
+        <div id="scoreboard" class="scoreboard" hx-get="/update_pairs" hx-trigger="load every 2s" hx-swap="outerHTML">
+            <p>Player's Pairs: <span id="player-pairs">{{ player_pairs }}</span></p>
+            <p>Computer's Pairs: <span id="computer-pairs">{{ computer_pairs }}</span></p>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <p>Kyle Donovan Go Fish</p>
+    <a href="/register" class="restart-button">Restart</a>
+</footer>
+{% endblock %}

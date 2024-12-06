@@ -1,0 +1,252 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #1b4332, #081c15);
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full-screen height */
+}
+
+/* Headers */
+h1, h2 {
+    color: #ffffff;
+    text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.8);
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 36px;
+    margin-top: 20px;
+}
+
+/* Links */
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+/* Footer */
+footer {
+    background-color: #081c15;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 15px 10px;
+    border-top: 1px solid #4CAF50;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.3);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+/* Buttons */
+button, .menu-button, .restart-button, .play-again-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #4CAF50, #3e8e41);
+    color: white;
+    padding: 10px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+    button:hover, .menu-button:hover, .restart-button:hover, .play-again-button:hover {
+        background: linear-gradient(135deg, #45a049, #2e7d32);
+        transform: translateY(-5px);
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    button:active, .menu-button:active, .restart-button:active, .play-again-button:active {
+        transform: translateY(2px);
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+/* Secondary Buttons */
+.secondary-button {
+    background: linear-gradient(135deg, #457b9d, #1d3557);
+    color: #ffffff;
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s ease-in-out;
+}
+
+    .secondary-button:hover {
+        background: linear-gradient(135deg, #1d3557, #457b9d);
+        transform: translateY(-5px);
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .secondary-button:active {
+        transform: translateY(2px);
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+/* Card Styles */
+.player-cards img, .computer-cards img {
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease;
+}
+
+    .player-cards img:hover, .computer-cards img:hover {
+        transform: scale(1.1);
+    }
+
+/* Player Cards */
+.player-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Computer Cards */
+.computer-cards {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    opacity: 0.9;
+}
+
+/* Scoreboard */
+.scoreboard {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent dark overlay */
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 16px;
+    z-index: 1000;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+    .scoreboard p {
+        margin: 5px 0;
+        font-weight: bold;
+    }
+
+.leaderboard-section {
+    background-color: rgba(27, 67, 50, 0.95);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.8);
+    margin: 20px auto;
+    width: 90%;
+    max-width: 800px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: center;
+}
+
+    .leaderboard-table th, .leaderboard-table td {
+        padding: 12px 20px;
+        border: 1px solid #4CAF50;
+    }
+
+    .leaderboard-table th {
+        background-color: #4CAF50;
+        color: white;
+        font-weight: bold;
+    }
+
+    .leaderboard-table tr:hover {
+        background-color: #a9dfbf;
+    }
+
+
+/* Game Over Section */
+.game-over-section {
+    background: linear-gradient(135deg, #1b4332, #2a5298);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+    color: white;
+    text-align: center;
+    width: 80%;
+    margin: 30px auto;
+}
+
+    .game-over-section p {
+        margin: 10px 0;
+        font-size: 18px;
+    }
+
+/* Flash Messages */
+.messages {
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto;
+    background: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+    .messages ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .messages li {
+        margin: 5px 0;
+    }
+
+/* General Responsiveness */
+@media (max-width: 768px) {
+    .player-cards img, .computer-cards img {
+        width: 80px;
+    }
+
+    .scoreboard {
+        font-size: 14px;
+    }
+
+    .menu-button, .restart-button, .play-again-button {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
+}

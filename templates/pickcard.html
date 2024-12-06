@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block the_body %}
+<div class="card-table">
+    <h2>The computer asks: Do you have a {{ value }}?</h2>
+
+    <!-- Options for Yes or No -->
+    <div class="player-options">
+        <a href="/respond/yes/{{ value }}" class="menu-button">Yes</a>
+        <a href="/respond/no/{{ value }}" class="menu-button">No</a>
+    </div>
+
+    <!-- Display Player's Cards -->
+    <h2>Your Cards:</h2>
+    <div class="player-cards">
+        {% for card in cards %}
+        <img src="/static/cards/{{ card }}" alt="Your Card">
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

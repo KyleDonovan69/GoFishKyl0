@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block the_body %}
+<div class="game-over-section">
+    <h1>Game Over</h1>
+
+    {% if winner == "Draw" %}
+    <p>It's a draw! Well played!</p>
+    {% elif winner == "Computer" %}
+    <p>Game Over! The computer won!</p>
+    {% else %}
+    <p>Congratulations, {{ winner }}! You won the game!</p>
+    {% endif %}
+
+    <div class="score-summary">
+        <p><strong>Your Pairs:</strong> {{ player_pairs }} (Score: {{ player_score }})</p>
+        <p><strong>Computer's Pairs:</strong> {{ computer_pairs }} (Score: {{ computer_score }})</p>
+    </div>
+
+    <div class="leaderboard-section">
+        <h2>Leaderboard</h2>
+        <table class="leaderboard-table">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player Name</th>
+                    <th>Games Played</th>
+                    <th>Games Won</th>
+                    <th>Total Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rank, player in enumerate(leaderboard, start=1) %}
+                <tr>
+                    <td>{{ rank }}</td>
+                    <td>{{ player[0] }}</td>
+                    <td>{{ player[1] }}</td>
+                    <td>{{ player[3] }}</td>
+                    <td>{{ player[2] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{{ url_for('register') }}" class="restart-button">Restart</a>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+<div id="game-area">
+    <div class="card-table">
+        <h2>The computer has {{ n_computer }} cards</h2>
+        <div class="computer-cards">
+            {% for _ in range(n_computer) %}
+            <img src="/static/cards/back.png" alt="Computer Card Back">
+            {% endfor %}
+        </div>
+
+        <h2>Your Cards</h2>
+        <div class="player-cards">
+            {% for card in cards %}
+            <button hx-get="/select/{{ card.split('_')[0] }}"
+                    hx-trigger="click"
+                    hx-target="#game-area"
+                    hx-swap="outerHTML">
+                <img src="/static/cards/{{ card }}" alt="{{ card }}">
+            </button>
+            {% endfor %}
+        </div>
+
+        <div id="scoreboard" class="scoreboard" hx-get="/update_pairs" hx-trigger="load every 2s" hx-swap="outerHTML">
+            <p>Player's Pairs: <span id="player-pairs">{{ player_pairs }}</span></p>
+            <p>Computer's Pairs: <span id="computer-pairs">{{ computer_pairs }}</span></p>
+        </div>
+    </div>
+</div>
