@@ -1,4 +1,3 @@
-/* General Styles */
 body {
     font-family: 'Roboto', Arial, sans-serif;
     margin: 0;
@@ -8,10 +7,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Full-screen height */
+    height: 100vh;
 }
 
-/* Headers */
 h1, h2 {
     color: #ffffff;
     text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.8);
@@ -28,7 +26,6 @@ h1 {
     margin-top: 20px;
 }
 
-/* Links */
 a {
     color: #ffffff;
     text-decoration: none;
@@ -38,7 +35,6 @@ a {
         text-decoration: underline;
     }
 
-/* Footer */
 footer {
     background-color: #081c15;
     color: #ffffff;
@@ -46,14 +42,13 @@ footer {
     padding: 15px 20px;
     border-top: 1px solid #4CAF50;
     box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.3);
-    position: fixed; /* Fix footer to the bottom */
-    bottom: 0; /* Pin to the bottom of the screen */
-    left: 0; /* Align to the left edge */
-    width: 100%; /* Full width of the screen */
-    text-align: center; /* Center-align the content */
+    position: fixed; 
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center; 
 }
 
-/* Buttons */
 button, .menu-button, .restart-button, .play-again-button {
     display: inline-block;
     background: linear-gradient(135deg, #4CAF50, #3e8e41);
@@ -83,7 +78,6 @@ button, .menu-button, .restart-button, .play-again-button {
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     }
 
-/* Secondary Buttons */
 .secondary-button {
     background: linear-gradient(135deg, #457b9d, #1d3557);
     color: #ffffff;
@@ -110,7 +104,6 @@ button, .menu-button, .restart-button, .play-again-button {
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     }
 
-/* Card Styles */
 .player-cards img, .computer-cards img {
     width: 100px;
     height: auto;
@@ -123,7 +116,6 @@ button, .menu-button, .restart-button, .play-again-button {
         transform: scale(1.1);
     }
 
-/* Player Cards */
 .player-cards {
     display: flex;
     justify-content: center;
@@ -132,7 +124,6 @@ button, .menu-button, .restart-button, .play-again-button {
     margin-top: 20px;
 }
 
-/* Computer Cards */
 .computer-cards {
     display: flex;
     justify-content: center;
@@ -140,12 +131,11 @@ button, .menu-button, .restart-button, .play-again-button {
     opacity: 0.9;
 }
 
-/* Scoreboard */
 .scoreboard {
     position: fixed;
     top: 20px;
     right: 20px;
-    background: rgba(0, 0, 0, 0.8); /* Semi-transparent dark overlay */
+    background: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 15px 20px;
     border-radius: 10px;
@@ -196,7 +186,6 @@ button, .menu-button, .restart-button, .play-again-button {
     }
 
 
-/* Game Over Section */
 .game-over-section {
     background: linear-gradient(135deg, #1b4332, #2a5298);
     padding: 20px;
@@ -213,7 +202,6 @@ button, .menu-button, .restart-button, .play-again-button {
         font-size: 18px;
     }
 
-/* Flash Messages */
 .messages {
     width: 80%;
     max-width: 600px;
@@ -236,7 +224,6 @@ button, .menu-button, .restart-button, .play-again-button {
         margin: 5px 0;
     }
 
-/* General Responsiveness */
 @media (max-width: 768px) {
     .player-cards img, .computer-cards img {
         width: 80px;

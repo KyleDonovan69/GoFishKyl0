@@ -109,6 +109,9 @@ def process_card_selection(value):
     session["player"], pairs = cards.identify_remove_pairs(session["player"])
     session["player_pairs"].extend(pairs)
 
+    player_pairs = len(session.get("player_pairs", []))
+    computer_pairs = len(session.get("computer_pairs", []))
+
     if check_game_over():
         return redirect(url_for("game_over"))
 
@@ -120,6 +123,8 @@ def process_card_selection(value):
         title="The computer wants to know",
         value=the_value,
         cards=card_images,
+        player_pairs=player_pairs,
+        computer_pairs=computer_pairs
     )
 
 

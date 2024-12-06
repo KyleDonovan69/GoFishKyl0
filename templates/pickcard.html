@@ -1,21 +1,39 @@
 {% extends "base.html" %}
 
 {% block the_body %}
-<div class="card-table">
-    <h2>The computer asks: Do you have a {{ value }}?</h2>
+<div id="game-area">
+    <div class="card-table">
+        <h2>The computer asks: Do you have a {{ value }}?</h2>
+        <div class="player-options">
+            <button hx-get="/respond/yes/{{ value }}"
+                    hx-target="#game-area"
+                    hx-swap="outerHTML"
+                    class="menu-button">
+                Yes
+            </button>
+            <button hx-get="/respond/no/{{ value }}"
+                    hx-target="#game-area"
+                    hx-swap="outerHTML"
+                    class="menu-button">
+                No
+            </button>
+        </div>
 
-    <!-- Options for Yes or No -->
-    <div class="player-options">
-        <a href="/respond/yes/{{ value }}" class="menu-button">Yes</a>
-        <a href="/respond/no/{{ value }}" class="menu-button">No</a>
-    </div>
+        <h2>Your Cards</h2>
+        <div class="player-cards">
+            {% for card in cards %}
+            <img src="/static/cards/{{ card }}" alt="{{ card }}">
+            {% endfor %}
+        </div>
 
-    <!-- Display Player's Cards -->
-    <h2>Your Cards:</h2>
-    <div class="player-cards">
-        {% for card in cards %}
-        <img src="/static/cards/{{ card }}" alt="Your Card">
-        {% endfor %}
+        <div id="scoreboard" class="scoreboard" hx-get="/update_pairs" hx-trigger="load every 2s" hx-swap="outerHTML">
+            <p>Player's Pairs: <span id="player-pairs">{{ player_pairs }}</span></p>
+            <p>Computer's Pairs: <span id="computer-pairs">{{ computer_pairs }}</span></p>
+        </div>
     </div>
 </div>
+<footer class="footer">
+    <p>Kyle Donovan Go Fish</p>
+    <a href="/register" class="restart-button">Restart</a>
+</footer>
 {% endblock %}
